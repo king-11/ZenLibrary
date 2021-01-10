@@ -1,0 +1,30 @@
+.container {
+  display: block;
+  max-width: 450px;
+  @apply h-72 sm:h-60 lg:h-48;
+  @apply px-1 sm:px-0;
+}
+
+.shaped {
+  width: 150px;
+  @apply h-72 sm:h-60 lg:h-48;
+  float: right;
+  background-size: cover !important;
+  shape-outside: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 40% 100%);
+  shape-margin: 20px;
+}
+
+.content {
+  @apply h-60 sm:h-52 lg:h-40;
+  @apply text-base;
+  @apply text-gray-600;
+  @apply font-light font-mono;
+  @apply py-5;
+}
+
+.content p {
+  /* display: block; */
+  word-break: break-all;
+  overflow-y: hidden;
+}
