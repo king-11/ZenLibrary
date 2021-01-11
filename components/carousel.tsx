@@ -1,5 +1,5 @@
 import Carousel from "react-alice-carousel";
-import styles from "../styles/card.module.css";
+import styles from "styles/card.module.css";
 import "react-alice-carousel/lib/alice-carousel.css";
 
 export default function MultiCarousel() {
