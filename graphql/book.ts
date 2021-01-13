@@ -1,19 +1,12 @@
 import { Document, Model, Schema, model, models } from "mongoose";
 
-const bookGenres = [
-  "Fiction",
-  "Manga",
-  "Biography",
-  "Non Fiction",
-  "Self Help",
-  "Mystery",
-  "Fantasy",
-  "Poetry",
-  "Spirituality",
-];
-
 export const bookSchema = new Schema({
-  name: {
+  description: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  title: {
     type: String,
     required: true,
     trim: true,
@@ -26,22 +19,30 @@ export const bookSchema = new Schema({
       maxlength: 50,
     },
   ],
-  description: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  img: {
-    type: String,
+  categories: [
+    {
+      type: String,
+      trim: true,
+      required: false,
+    },
+  ],
+  rating: {
+    type: Number,
     required: false,
-    trim: true,
   },
-  genre: {
-    type: String,
-    trim: true,
-    required: true,
-    enum: bookGenres,
+  images: {
+    type: Object,
+    required: false,
+    default: {},
+    smallThumbnail: { type: String, required: false },
+    thumbnail: { type: String, required: false },
   },
+  industryIdentifiers: [
+    {
+      type: { type: String, required: true },
+      identifier: { type: String, required: true },
+    },
+  ],
   suggestedBy: {
     type: String,
     trim: true,
@@ -51,20 +52,19 @@ export const bookSchema = new Schema({
 });
 
 export interface IBook {
-  name: string;
-  description: string;
-  img: string;
+  description?: string;
+  title: string;
+  authors: string[];
+  categories?: string[];
+  rating?: number;
+  images?: { smallThumbnail?: string; thumbnail?: string };
+  industryIdentifiers: [
+    {
+      type: string;
+      identifier: string;
+    }
+  ];
   suggestedBy?: string;
-  genre:
-    | "Fiction"
-    | "Manga"
-    | "Biography"
-    | "Non Fiction"
-    | "Self Help"
-    | "Mystery"
-    | "Fantasy"
-    | "Poetry"
-    | "Spirituality";
 }
 
 export interface IBookDocument extends IBook, Document {}

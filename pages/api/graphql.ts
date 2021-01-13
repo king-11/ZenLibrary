@@ -5,21 +5,41 @@ import { IBookDocument, BookModel, IBook } from "graphql/book";
 import { connect } from "graphql/db";
 
 const typeDefs = gql`
+  type Images {
+    smallThumbnail: String
+    thumbnail: String
+  }
+  type IndustryIdentifiers {
+    type: String
+    identifier: String
+  }
   type Book {
     _id: ID!
-    name: String!
+    description: String
+    title: String!
     authors: [String!]!
-    genre: String!
-    description: String!
-    img: String
+    categories: [String!]
+    rating: Float
+    images: Images
+    industryIdentifiers: [IndustryIdentifiers!]!
     suggestedBy: String
   }
+  input ImagesInput {
+    smallThumbnail: String
+    thumbnail: String
+  }
+  input IndustryIdentifiersInput {
+    type: String
+    identifier: String
+  }
   input BookInput {
-    name: String
+    description: String
+    title: String!
     authors: [String!]!
-    genre: String!
-    description: String!
-    img: String
+    categories: [String!]
+    rating: Float
+    images: ImagesInput
+    industryIdentifiers: [IndustryIdentifiersInput!]!
     suggestedBy: String
   }
   type Query {
