@@ -58,12 +58,7 @@ export interface IBook {
   categories?: string[];
   rating?: number;
   images?: { smallThumbnail?: string; thumbnail?: string };
-  industryIdentifiers: [
-    {
-      type: string;
-      identifier: string;
-    }
-  ];
+  industryIdentifiers: { type: string; identifier: string }[];
   suggestedBy?: string;
 }
 
