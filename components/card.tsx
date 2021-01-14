@@ -1,5 +1,6 @@
 import { IBook } from "graphql/book";
 import Image from "next/image";
+import style from "styles/card.module.scss";
 
 export default function Card({ book }: { book: IBook }) {
   let categories: string[] = [];
@@ -13,27 +14,20 @@ export default function Card({ book }: { book: IBook }) {
   const defaultURI = "/images/bookcover.jpg";
 
   return (
-    <div className="flex flex-col max-w-lg h-72 mx-2 my-4 shadow-md justify-evenly">
-      <div className="px-3 py-1 flex flex-row justify-between">
-        <div className="w-3/4">
-          <h1 className="text-xl sm:text-2xl font-semibold  text-gray-800 overflow-hidden truncate">
-            {book.title}
-          </h1>
-          <span className="flex justify-between overflow-hidden truncate">
+    <div className={style.container}>
+      <div className={style.header}>
+        <div>
+          <h1>{book.title}</h1>
+          <div>
             {book.authors.map((val, idx) => (
-              <h2
-                className="text-base font-sans font-light text-gray-600"
-                key={idx}
-              >
-                {val}
-              </h2>
+              <h2 key={idx}>{val}</h2>
             ))}
-          </span>
-          <h4 className="text-gray-700 font-mono">
-            Rating: <span className="font-bold">{book.rating || null}</span>
+          </div>
+          <h4>
+            Rating: <span>{book.rating || null}</span>
           </h4>
         </div>
-        <div className="w-1/4 flex justify-center">
+        <div>
           <Image
             src={book.images.thumbnail || defaultURI}
             alt={`Thumbnail for ${book.title}`}
@@ -42,18 +36,13 @@ export default function Card({ book }: { book: IBook }) {
           />
         </div>
       </div>
-      <p className="px-2 py-2 break-all leading-snug max-h-36 overflow-y-hidden">
+      <p className={style.content}>
         {book.description ||
           "Can't seem to find a proper description its your turn to find it"}
       </p>
-      <div className="flex justify-around my-2 mx-2">
+      <div className={style.footer}>
         {categories?.map((val, idx) => (
-          <span
-            key={idx}
-            className="bg-blue-500 text-white rounded-2xl px-3 ml-auto"
-          >
-            {val}
-          </span>
+          <span key={idx}>{val}</span>
         ))}
       </div>
     </div>
