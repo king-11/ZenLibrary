@@ -2,7 +2,10 @@ const path = require('path')
 
 module.exports = {
   sassOption: {
-    includePaths:[path.join(__dirname,'styles')]
+    includePaths: [path.join(__dirname, 'styles')]
   },
   poweredByHeader: false,
+  images: {
+    domains: ['books.google.com']
+  }
 }
