@@ -18,8 +18,11 @@ export default function Home({ books }: { books: IBook[] }) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch("http://localhost:3000/api/graphql", {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const protocol = req.headers["x-forwarded-proto"] || "http";
+  const baseUrl = req ? `${protocol}://${req.headers.host}` : "";
+  console.log(baseUrl);
+  const res = await fetch(`${baseUrl}/api/graphql`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
