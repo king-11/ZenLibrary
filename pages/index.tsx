@@ -1,28 +1,47 @@
 import Nav from "components/nav";
-import Carousel from "components/carousel";
+import Card from "components/card";
+import { GetServerSideProps } from "next";
+import { IBook } from "graphql/book";
 
-export default function Home() {
+export default function Home({ books }: { books: IBook[] }) {
   return (
     <main>
       <nav>
         <Nav />
       </nav>
-      <section>
-        <div className="md:flex bg-white rounded-lg p-24 justify-center">
-          <img
-            alt="my avatar"
-            className="h-16 w-16 md:h-24 md:w-24 rounded-full mx-auto md:mx-0 md:mr-6"
-            src="https://avatars.githubusercontent.com/king-11"
-          />
-          <div className="text-center md:text-justify">
-            <h2 className="text-lg">Lakshya Singh</h2>
-            <div className="text-blue-700">JavaScript developer</div>
-            <div className="text-gray-600">Github: @king-11</div>
-            <div className="text-gray-600">InstaGram: @cryptic-sniper</div>
-          </div>
-        </div>
+      <section className="flex flex-wrap justify-center">
+        {books.map((book, idx) => (
+          <Card key={idx} book={book} />
+        ))}
       </section>
-      <Carousel />
     </main>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const res = await fetch("http://localhost:3000/api/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      query: `{ books {
+    title
+    categories
+    authors
+    description
+    rating
+    images {
+      thumbnail
+    }
+  } }`,
+    }),
+  }).then((val) => val.json());
+
+  return {
+    props: {
+      books: res.data.books,
+    },
+  };
+};
