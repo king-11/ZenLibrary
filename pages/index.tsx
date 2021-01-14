@@ -9,7 +9,7 @@ export default function Home({ books }: { books: IBook[] }) {
       <nav>
         <Nav />
       </nav>
-      <section className="flex flex-wrap justify-center">
+      <section className="flex flex-col sm:flex-row sm:flex-wrap sm:justify-center">
         {books.map((book, idx) => (
           <Card key={idx} book={book} />
         ))}
@@ -21,7 +21,7 @@ export default function Home({ books }: { books: IBook[] }) {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const protocol = req.headers["x-forwarded-proto"] || "http";
   const baseUrl = req ? `${protocol}://${req.headers.host}` : "";
-  console.log(baseUrl);
+
   const res = await fetch(`${baseUrl}/api/graphql`, {
     method: "POST",
     headers: {
