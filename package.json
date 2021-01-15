@@ -13,6 +13,7 @@
   "dependencies": {
     "@types/mongoose-unique-validator": "^1.0.4",
     "apollo-server-micro": "^2.19.1",
+    "fuse.js": "^6.4.6",
     "graphql": "^15.4.0",
     "graphql-tools": "^7.0.2",
     "mongoose": "^5.11.11",

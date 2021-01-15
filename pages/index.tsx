@@ -2,15 +2,29 @@ import Nav from "components/nav";
 import Card from "components/card";
 import { GetServerSideProps } from "next";
 import { IBook } from "graphql/book";
+import { useMemo, useState } from "react";
+import Fuse from "fuse.js";
 
 export default function Home({ books }: { books: IBook[] }) {
+  const [state, setState] = useState("");
+  const filteredBooks = useMemo(() => {
+    if (state === "") {
+      return books;
+    }
+    const options = {
+      keys: ["authors", "title", "categories"],
+    };
+    const fuse = new Fuse(books, options);
+    return fuse.search(state).map((val) => val.item);
+  }, [books, state]);
+
   return (
     <main>
       <nav>
-        <Nav />
+        <Nav state={state} setState={setState} />
       </nav>
       <section className="flex flex-col sm:flex-row sm:flex-wrap sm:justify-center">
-        {books.map((book, idx) => (
+        {filteredBooks.map((book, idx) => (
           <Card key={idx} book={book} />
         ))}
       </section>
