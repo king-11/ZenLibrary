@@ -39,6 +39,6 @@
 .footer {
   @apply flex justify-around mb-2 mt-auto mx-2;
   span {
-    @apply bg-blue-500 text-white rounded-2xl px-3 ml-auto;
+    @apply bg-blue-500 text-white rounded-2xl px-3 ml-auto overflow-hidden truncate mx-1;
   }
 }

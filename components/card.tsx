@@ -6,7 +6,7 @@ export default function Card({ book }: { book: IBook }) {
   let categories: string[] = [];
   if (book.categories.length !== 0) {
     book.categories.forEach((val) => {
-      categories = [...categories, ...val.split(/[\s&]/).filter(Boolean)];
+      categories = [...categories, ...val.split(/[\W]/).filter(Boolean)];
     });
   }
   // TODO: Add dropdown to show Industry Identifiers

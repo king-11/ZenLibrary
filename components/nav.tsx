@@ -29,7 +29,7 @@ export default function Nav({
             >
               <input
                 type="text"
-                className="px-4 py-1 rounded-2xl"
+                className="rounded-2xl shadow appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 value={state}
                 placeholder="Search"
                 onChange={(e) => setState(e.target.value)}
