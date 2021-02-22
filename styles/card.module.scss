@@ -8,41 +8,50 @@
 
 .header {
   @apply px-3 py-1 flex flex-row justify-between;
-  div:first-of-type {
+  div:first-child {
     @apply w-3/4;
 
     h1 {
-      @apply text-xl sm:text-2xl font-semibold  text-gray-800 dark:text-gray-50  overflow-hidden truncate;
+      font-family:'Righteous';
+      @apply text-xl text-gray-800 dark:text-gray-50  overflow-hidden truncate;
     }
 
     div {
-      @apply flex justify-around;
+      @apply flex justify-around mt-1;
 
       h2 {
+        font-family: 'Big Shoulders Text';
         @apply text-base  text-gray-600 dark:text-white overflow-hidden truncate;
       }
     }
 
     h4 {
-      @apply text-gray-700 dark:text-gray-200 font-mono;
+      @apply text-gray-700 dark:text-gray-200 text-base mt-2;
+      font-family: 'Crimson Text';
       span {
+        font-family: inherit;
         @apply font-bold dark:text-gray-200;
       }
     }
   }
 
   div:nth-of-type(2) {
-    @apply w-1/4 flex justify-center;
+    @apply w-1/4 flex justify-center h-24;
+    img {
+      object-fit: contain;
+    }
   }
 }
 
 .content {
-  @apply px-2 py-2 break-all leading-snug max-h-36 overflow-y-hidden dark:text-white;
+  @apply px-2 my-2 leading-snug md:leading-normal dark:text-white md:line-clamp-8 line-clamp-6;
 }
 
 .footer {
+  font-family: 'Crimson Text';
   @apply flex justify-around mb-2 mt-auto mx-2;
   span {
+    font-family: inherit;
     @apply bg-blue-500 text-white rounded-2xl px-3 ml-auto overflow-hidden truncate mx-1;
   }
 }

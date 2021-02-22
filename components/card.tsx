@@ -1,5 +1,4 @@
 import { IBook } from "graphql/book";
-import Image from "next/image";
 import style from "styles/card.module.scss";
 
 export default function Card({ book }: { book: IBook }) {
@@ -28,18 +27,17 @@ export default function Card({ book }: { book: IBook }) {
           </h4>
         </div>
         <div>
-          <Image
+          <img
             src={book.images.thumbnail || defaultURI}
             alt={`Thumbnail for ${book.title}`}
-            width={80}
-            height={80}
+            loading="lazy"
           />
         </div>
       </div>
-      <p className={style.content}>
+      <figure className={style.content}>
         {book.description ||
-          "Can't seem to find a proper description its your turn to find it"}
-      </p>
+          "Can't seem to find a proper description its your chance to find it"}
+      </figure>
       <div className={style.footer}>
         {categories?.map((val, idx) => (
           <span key={idx}>{val}</span>
