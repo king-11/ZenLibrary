@@ -1,9 +1,16 @@
 @tailwind base;
 @tailwind components;
 
-html,
-body {
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@400;500&family=Merriweather:wght@300;400&family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&display=swap');
+
+* {
   @apply bg-gray-50 dark:bg-gray-800;
+  margin: 0;
+  padding: 0;
+  margin-block: 0;
+  margin-inline: 0;
+  font-family: 'Merriweather';
 }
 
 @tailwind utilities;

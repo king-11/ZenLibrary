@@ -4,6 +4,7 @@ import { GetServerSideProps } from "next";
 import { IBook } from "graphql/book";
 import { useMemo, useState } from "react";
 import Fuse from "fuse.js";
+import style from "styles/card.module.scss";
 
 export default function Home({ books }: { books: IBook[] }) {
   const [state, setState] = useState("");
@@ -23,11 +24,11 @@ export default function Home({ books }: { books: IBook[] }) {
       <nav>
         <Nav state={state} setState={setState} />
       </nav>
-      <section className="flex flex-col sm:flex-row sm:flex-wrap sm:justify-center">
+      <main className={style.masonry}>
         {filteredBooks.map((book, idx) => (
           <Card key={idx} book={book} />
         ))}
-      </section>
+      </main>
     </main>
   );
 }
