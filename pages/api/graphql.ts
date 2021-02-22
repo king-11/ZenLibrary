@@ -1,4 +1,4 @@
-import { ApolloServer, gql, makeExecutableSchema } from "apollo-server-micro";
+import { gql, makeExecutableSchema, ApolloServer } from "apollo-server-micro";
 
 import { isValidObjectId } from "mongoose";
 import { IBookDocument, BookModel, IBook } from "graphql/book";
@@ -44,7 +44,7 @@ const typeDefs = gql`
   }
   type Query {
     sayHello: String!
-    books: [Book!]
+    books(first: Int = 25, skip: Int = 0): [Book!]
     book(id: ID!): Book
   }
   type Mutation {
@@ -55,8 +55,12 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     sayHello: () => "Hello World!",
-    books: async () => {
-      const books: [IBookDocument] = await BookModel.find({});
+    books: async (parent, { first = 25, skip = 0 }) => {
+      const books: IBookDocument[] = await BookModel.find({})
+        .sort({ title: 1 })
+        .limit(first)
+        .skip(skip);
+
       return [...books];
     },
     book: async (parent, { id }) => {
@@ -89,4 +93,6 @@ const apolloServer = new ApolloServer({
   },
 });
 
-export default apolloServer.createHandler({ path: "/api/graphql" });
+const handler = apolloServer.createHandler({ path: "/api/graphql" });
+
+export default handler;

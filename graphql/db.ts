@@ -5,7 +5,7 @@ const url = process.env.MONGO_URL || " ";
 export const connect = async () => {
   const state = mongoose.connection.readyState;
   if ([1, 2].includes(state)) return;
-  await mongoose.connect(url, {
+  return mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
