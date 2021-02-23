@@ -4,7 +4,7 @@ import { GetServerSideProps } from "next";
 import { IBook } from "graphql/book";
 import { useMemo, useState } from "react";
 import Fuse from "fuse.js";
-import style from "styles/card.module.scss";
+import style from "styles/masonry.module.scss";
 
 export default function Home({ books }: { books: IBook[] }) {
   const [state, setState] = useState("");
