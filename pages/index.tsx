@@ -2,24 +2,26 @@ import Card from "components/card";
 import Loader from "components/loader";
 import Nav from "components/nav";
 import Fuse from "fuse.js";
+import { IBook } from "graphql/book";
 import { useFetch } from "hooks/useFetch";
 import Masonry from "hooks/useMasonry";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
+const headers = {
+    ContentType: "application/json",
+    Accept: "application/json",
+  },
+  method: "POST" | "GET" = "POST";
 
 export default function Home() {
   const [state, setState] = useState("");
-
-  const { loading, response, error } = useFetch({
-    url: "/api/graphql",
-    options: {
-      method: "POST",
-      headers: {
-        ContentType: "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        query: `{ books {
+  const skip = useRef(0);
+  const [control, setControl] = useState({ load: true, nomore: false });
+  const [options, setOptions] = useState({
+    method: method,
+    headers: headers,
+    body: JSON.stringify({
+      query: `{ books(skip:0) {
             title
             categories
             authors
@@ -30,20 +32,74 @@ export default function Home() {
             }
           }
         }`,
-      }),
-    },
+    }),
   });
+  const { loading, response, error } = useFetch({
+    url: "/api/graphql",
+    options: options,
+    control,
+  });
+
+  const [books, setBooks] = useState<IBook[]>([]);
+  useEffect(() => {
+    if (response?.data?.books) {
+      if (response.data.books.length == 0)
+        setControl({ ...control, nomore: true });
+      const tempBooks: IBook[] = [...books, ...response?.data?.books];
+      const check: Set<string> = new Set();
+      setBooks(
+        tempBooks
+          .filter((obj) => !check.has(obj.title) && check.add(obj.title))
+          .sort((a, b) => (a.title <= b.title ? -1 : 1))
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [response?.data]);
 
   const filteredBooks = useMemo(() => {
     if (state === "") {
-      return response?.data?.books ?? [];
+      return books;
     }
     const options = {
       keys: ["authors", "title", "categories"],
     };
-    const fuse = new Fuse(response?.data?.books ?? [], options);
+    const fuse = new Fuse(books, options);
     return fuse.search(state).map((val) => val.item);
-  }, [response?.data?.books, state]);
+  }, [books, state]);
+
+  useEffect(() => {
+    function handleScroll() {
+      if (
+        window.innerHeight + document.documentElement.scrollTop !==
+        document.documentElement.offsetHeight
+      )
+        return;
+
+      skip.current += 15;
+      setControl({ ...control, load: false });
+      setOptions({
+        method: method,
+        headers: headers,
+        body: JSON.stringify({
+          query: `{ books(skip:${skip.current}) {
+            title
+            categories
+            authors
+            description
+            rating
+            images {
+              thumbnail
+            }
+          }
+        }`,
+        }),
+      });
+      console.log("Fetch more list items!");
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const breakpoints = [
     {

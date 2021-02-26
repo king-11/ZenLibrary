@@ -9,10 +9,12 @@ interface RequestInit {
 export const useFetch = ({
   url,
   options,
+  control
 }: {
   url: string;
   options: RequestInit;
-}) => {
+  control: {load:boolean,nomore:boolean}
+  }) => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -20,7 +22,12 @@ export const useFetch = ({
     const abortController = new AbortController();
     const signal = abortController.signal;
     const doFetch = async () => {
-      setLoading(true);
+      if(control.load)
+        setLoading(true);
+
+      if (control.nomore)
+        return null;
+
       try {
         const res = await fetch(url, options);
         const json = await res.json();
@@ -41,6 +48,6 @@ export const useFetch = ({
     return () => {
       abortController.abort();
     };
-  }, []);
+  }, [options]);
   return { response, error, loading };
 };

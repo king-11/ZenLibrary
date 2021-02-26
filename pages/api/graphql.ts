@@ -1,8 +1,8 @@
-import { gql, makeExecutableSchema, ApolloServer } from "apollo-server-micro";
-
-import { isValidObjectId } from "mongoose";
-import { IBookDocument, BookModel, IBook } from "graphql/book";
+import { ApolloServer, gql, makeExecutableSchema } from "apollo-server-micro";
+import { BookModel, IBook, IBookDocument } from "graphql/book";
 import { connect } from "graphql/db";
+import { isValidObjectId } from "mongoose";
+
 
 const typeDefs = gql`
   type Images {
@@ -44,7 +44,7 @@ const typeDefs = gql`
   }
   type Query {
     sayHello: String!
-    books(first: Int = 25, skip: Int = 0): [Book!]
+    books(first: Int = 15, skip: Int = 0): [Book!]
     book(id: ID!): Book
   }
   type Mutation {
@@ -55,7 +55,7 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     sayHello: () => "Hello World!",
-    books: async (parent, { first = 25, skip = 0 }) => {
+    books: async (parent, { first = 15, skip = 0 }) => {
       const books: IBookDocument[] = await BookModel.find({})
         .sort({ title: 1 })
         .limit(first)
