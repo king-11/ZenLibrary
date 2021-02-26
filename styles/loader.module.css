@@ -1,7 +1,6 @@
 .preloader {
   display: flex;
   font-size: calc(16px + (24 - 16)*(100vw - 320px)/ (1280 - 320));
-  color: #2dd87a;
   line-height: 1.5;
   perspective: 40em;
   animation: tiltSpin 8s linear infinite;
@@ -12,6 +11,7 @@
   margin: auto;
   width: 17em;
   height: 80vh;
+  @apply text-blue-300 dark:text-blue-500;
 }
 
 .preloader, .preloader__ring {

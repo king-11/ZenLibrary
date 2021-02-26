@@ -1,4 +1,5 @@
 import { FC, ReactNode, useEffect, useState } from "react";
+import useWindowSize from "./useWindowSize";
 
 interface breakpoint {
   width: number;
@@ -9,29 +10,19 @@ const Masonry: FC<{ breakpoints: breakpoint[]; children: ReactNode[] }> = ({
   breakpoints,
   children,
 }) => {
-  const [columns, setColumns] = useState(3);
+  const [columns, setColumns] = useState(1);
+  const { width } = useWindowSize();
+  breakpoints = breakpoints.sort((a, b) => a.width - b.width);
+
   useEffect(() => {
-    if (typeof window !== undefined) {
-      const handleResize = () => {
-        const width = window.innerWidth;
-        for (let index = 0; index < breakpoints.length; index++) {
-          const element = breakpoints[index];
-          if (element.width > width) {
-            setColumns(element.columns);
-            break;
-          }
+      for (let index = 0; index < breakpoints.length; index++) {
+        const element = breakpoints[index];
+        if (element.width > width) {
+          setColumns(element.columns);
+          break;
         }
-      };
-
-      window.addEventListener("resize", handleResize);
-      window.addEventListener("load", handleResize);
-
-      return () => {
-        window.removeEventListener("resize", handleResize);
-        window.removeEventListener("load", handleResize);
-      };
-    }
-  }, [breakpoints]);
+      }
+  }, [breakpoints,  width]);
 
   const columnWrapper = {};
   const result = [];
