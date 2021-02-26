@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import { IBook } from "graphql/book";
+import { useInView } from "react-intersection-observer";
 import style from "styles/card.module.scss";
 
 export default function Card({ book }: { book: IBook }) {
@@ -11,9 +13,23 @@ export default function Card({ book }: { book: IBook }) {
   // TODO: Add dropdown to show Industry Identifiers
 
   const defaultURI = "/images/bookcover.jpg";
+  const {ref,inView,entry } = useInView({triggerOnce:true});
+  const animate = inView && entry
+    ? { opacity: 1, translateX: 0, translateY: 0 }
+    : {};
 
   return (
-    <div className={style.container}>
+    <motion.div
+      ref={ref}
+      className={style.container}
+      initial={{
+        opacity: 0,
+        translateX: Math.random()  *  100,
+        translateY: Math.random()  *  100,
+        transitionDuration: "1s",
+      }}
+      animate={animate}
+    >
       <div className={style.header}>
         <div>
           <h1>{book.title}</h1>
@@ -43,6 +59,6 @@ export default function Card({ book }: { book: IBook }) {
           <span key={idx}>{val}</span>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }
