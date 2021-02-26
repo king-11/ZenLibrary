@@ -1,65 +1,79 @@
-import Nav from "components/nav";
 import Card from "components/card";
-import { GetServerSideProps } from "next";
-import { IBook } from "graphql/book";
-import { useMemo, useState } from "react";
+import Loader from "components/loader";
+import Nav from "components/nav";
 import Fuse from "fuse.js";
-import style from "styles/masonry.module.scss";
+import { useFetch } from "hooks/useFetch";
+import Masonry from "hooks/useMasonry";
+import { useMemo, useState } from "react";
 
-export default function Home({ books }: { books: IBook[] }) {
+
+export default function Home() {
   const [state, setState] = useState("");
+
+  const { loading, response, error } = useFetch({
+    url: "/api/graphql",
+    options: {
+      method: "POST",
+      headers: {
+        ContentType: "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        query: `{ books {
+            title
+            categories
+            authors
+            description
+            rating
+            images {
+              thumbnail
+            }
+          }
+        }`,
+      }),
+    },
+  });
+
   const filteredBooks = useMemo(() => {
     if (state === "") {
-      return books;
+      return response?.data?.books ?? [];
     }
     const options = {
       keys: ["authors", "title", "categories"],
     };
-    const fuse = new Fuse(books, options);
+    const fuse = new Fuse(response?.data?.books ?? [], options);
     return fuse.search(state).map((val) => val.item);
-  }, [books, state]);
+  }, [response?.data?.books, state]);
+
+  const breakpoints = [
+    {
+      width: 768,
+      columns: 1,
+    },
+    {
+      width: 1024,
+      columns: 2,
+    },
+    { width: 1536, columns: 3 },
+    { width: 3000, columns: 4 },
+  ];
 
   return (
     <main>
       <nav>
         <Nav state={state} setState={setState} />
       </nav>
-      <main className={style.masonry}>
-        {filteredBooks.map((book, idx) => (
-          <Card key={idx} book={book} />
-        ))}
-      </main>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <span>{error}</span>
+      ) : (
+        <Masonry breakpoints={breakpoints}>
+          {filteredBooks.map((book, idx) => (
+            <Card key={idx} book={book} />
+          ))}
+        </Masonry>
+      )}
     </main>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const protocol = req.headers["x-forwarded-proto"] || "http";
-  const baseUrl = req ? `${protocol}://${req.headers.host}` : "";
-
-  const res = await fetch(`${baseUrl}/api/graphql`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify({
-      query: `{ books {
-    title
-    categories
-    authors
-    description
-    rating
-    images {
-      thumbnail
-    }
-  } }`,
-    }),
-  }).then((val) => val.json());
-
-  return {
-    props: {
-      books: res.data.books,
-    },
-  };
-};
