@@ -13,7 +13,7 @@ export default function Nav({
       <ul className="flex items-center justify-between p-8">
         <li>
           <Link href="/">
-            <div className="text-blue-500 no-underline text-accent-1 dark:text-blue-300 text-lg py-1 px-2">
+            <div className="text-blue-500 no-underline text-accent-1 dark:text-white text-lg py-1 px-2">
               Home
             </div>
           </Link>
