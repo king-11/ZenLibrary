@@ -111,7 +111,7 @@ export default function Home() {
         dataLength={filteredBooks.length}
         next={fetchData}
         hasMore={!control.nomore}
-        loader={<Loader />}
+        loader={<Loader/>}
       >
         <Masonry breakpoints={breakpoints}>
           {filteredBooks.map((book, idx) => (
