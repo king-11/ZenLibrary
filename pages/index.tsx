@@ -94,11 +94,15 @@ export default function Home() {
         }`,
         }),
       });
-      console.log("Fetch more list items!");
     }
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll, false)
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+
+      window.removeEventListener("resize",handleScroll,false)
+    }
   }, []);
 
   const breakpoints = [

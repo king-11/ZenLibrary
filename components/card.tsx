@@ -1,34 +1,40 @@
 import { motion } from "framer-motion";
 import { IBook } from "graphql/book";
-import { useInView } from "react-intersection-observer";
+import { PureComponent } from "react";
+import { InView } from "react-intersection-observer";
 import style from "styles/card.module.scss";
 
-export default function Card({ book }: { book: IBook }) {
-  let categories: string[] = [];
-  if (book.categories.length !== 0) {
-    book.categories.forEach((val) => {
-      categories = [...categories, ...val.split(/[\W]/).filter(Boolean)];
-    });
+class CardComponent extends PureComponent<{ book: IBook }, { categories: string[] }> {
+  state = {categories:[]}
+  static defaultURI = "/images/bookcover.jpg";
+  static animate = { opacity: 1, scaleY: 1 };
+  constructor(props) {
+    super(props)
   }
-  // TODO: Add dropdown to show Industry Identifiers
 
-  const defaultURI = "/images/bookcover.jpg";
-  const {ref,inView,entry } = useInView({triggerOnce:true});
-  const animate = inView && entry
-    ? { opacity: 1, translateX: 0, translateY: 0 }
-    : {};
+  componentDidMount() {
+    const {book} = this.props
+    if (book.categories.length !== 0) {
+      book.categories.forEach((val) => {
+        this.setState({categories:[...this.state.categories,...val.split(/[\W]/).filter(Boolean)]})
+      });
+    }
+  }
 
-  return (
-    <motion.div
+  render() {
+    const { book } = this.props;
+    const {categories} = this.state
+
+    return (<InView as="div" triggerOnce>
+    {({ref,inView}) => (<motion.div
       ref={ref}
       className={style.container}
       initial={{
         opacity: 0,
-        translateX: Math.random()  *  100,
-        translateY: Math.random()  *  100,
+        scaleY: Math.random(),
         transitionDuration: "1s",
       }}
-      animate={animate}
+      animate={inView ? CardComponent.animate : {}}
     >
       <div className={style.header}>
         <div>
@@ -44,7 +50,7 @@ export default function Card({ book }: { book: IBook }) {
         </div>
         <div>
           <img
-            src={book.images.thumbnail || defaultURI}
+            src={book.images.thumbnail || CardComponent.defaultURI}
             alt={`Thumbnail for ${book.title}`}
             loading="lazy"
           />
@@ -59,6 +65,9 @@ export default function Card({ book }: { book: IBook }) {
           <span key={idx}>{val}</span>
         ))}
       </div>
-    </motion.div>
-  );
+    </motion.div>)}
+  </InView>)
+  }
 }
+
+export default CardComponent;
