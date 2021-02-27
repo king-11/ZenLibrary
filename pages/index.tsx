@@ -1,4 +1,5 @@
 import Card from "components/card";
+import Footer from "components/footer";
 import Loader from "components/loader";
 import Nav from "components/nav";
 import Fuse from "fuse.js";
@@ -112,6 +113,9 @@ export default function Home() {
         next={fetchData}
         hasMore={!control.nomore}
         loader={<Loader />}
+        endMessage={
+          <Footer/>
+        }
       >
         <Masonry breakpoints={breakpoints}>
           {filteredBooks.map((book, idx) => (
