@@ -161,7 +161,7 @@ module.exports = {
     divideColor: (theme) => theme("borderColor"),
     divideOpacity: (theme) => theme("borderOpacity"),
     divideWidth: (theme) => theme("borderWidth"),
-    fill: { current: "currentColor" },
+    fill: theme => ({ 'blue': theme('colors.blue.600'), 'white':theme('colors.white') }),
     flex: {
       1: "1 1 0%",
       auto: "1 1 auto",
@@ -811,7 +811,7 @@ module.exports = {
     divideOpacity: ["responsive"],
     divideStyle: ["responsive"],
     divideWidth: ["responsive"],
-    fill: ["responsive"],
+    fill: ["dark","hover"],
     flex: ["responsive"],
     flexDirection: ["responsive"],
     flexGrow: ["responsive"],
