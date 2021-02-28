@@ -1,7 +1,7 @@
 import Card from "components/card";
 import Footer from "components/footer";
 import Loader from "components/loader";
-import Nav from "components/nav";
+import Nav from "components/searchNav";
 import Fuse from "fuse.js";
 import { IBook } from "graphql/book";
 import { useFetch } from "hooks/useFetch";

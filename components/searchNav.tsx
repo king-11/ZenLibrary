@@ -12,10 +12,10 @@ export default function Nav({
     <nav>
       <ul className="flex items-center justify-between p-8">
         <li>
-          <Link href="/">
-            <div className="text-blue-500 no-underline text-accent-1 dark:text-white text-lg py-1 px-2">
-              Home
-            </div>
+          <Link href="/create">
+            <button className="text-blue-600 dark:text-gray-500 text-xl dark:bg-white px-4 py-1 rounded-md hover:bg-blue-600 hover:text-white shadow-md focus:outline-none">
+              Add Book
+            </button>
           </Link>
         </li>
         <li className="flex-grow max-w-full pl-8">
