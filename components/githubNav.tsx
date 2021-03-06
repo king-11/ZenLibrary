@@ -5,7 +5,7 @@ export default function githubNav() {
     <nav>
       <ul className="flex items-center justify-between p-8">
         <li>
-        <Link href="/">
+          <Link href="/">
             <button className="text-blue-600 dark:text-gray-500 text-xl dark:bg-white px-4 py-1 rounded-md hover:bg-blue-600 hover:text-white shadow-md focus:outline-none">
               Home
             </button>
@@ -65,11 +65,12 @@ export default function githubNav() {
                 }
               }
               @media (max-width: 500px) {
-                .github-corner:hover .octo-arm {
-                  animation: none;
+                .github-corner:hover .octo-arm,
+                .github-corner:focus .octo-arm {
+                  animation: octocat-wave 560ms ease-in-out;
                 }
                 .github-corner .octo-arm {
-                  animation: octocat-wave 560ms ease-in-out infinite;
+                  animation: none;
                 }
               }
             `}

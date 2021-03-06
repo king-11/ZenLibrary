@@ -29,7 +29,7 @@ export const useFetch = ({
         return null;
 
       try {
-        const res = await fetch(url, options);
+        const res = await fetch(url, { ...options, signal: signal });
         const json = await res.json();
         if (!signal.aborted) {
           setResponse(json);
