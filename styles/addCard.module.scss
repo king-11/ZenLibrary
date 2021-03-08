@@ -1,0 +1,44 @@
+.container {
+  @apply flex flex-col shadow-md justify-evenly dark:bg-gray-900 rounded-2xl mb-16 w-full sm:max-w-lg md:max-w-md relative;
+}
+
+.header {
+  @apply px-3 py-1 flex flex-row justify-between;
+  div:first-child {
+    @apply w-3/4 px-2;
+
+    h1 {
+      font-family:'Righteous';
+      @apply block text-xl text-gray-800 dark:text-gray-50 text-center py-2;
+    }
+
+    div {
+      @apply flex justify-around mt-1;
+
+      h2 {
+        font-family: 'Big Shoulders Text';
+        @apply text-base  text-gray-600 dark:text-white overflow-hidden truncate;
+      }
+    }
+
+    h4 {
+      @apply text-gray-500 dark:text-gray-200 text-base mt-10;
+      font-family: 'Crimson Text';
+      span {
+        font-family: inherit;
+        @apply font-bold dark:text-gray-200;
+      }
+    }
+  }
+
+  div:nth-of-type(2) {
+    @apply w-1/4 relative;
+    img {
+      @apply -mt-8 h-24 scale-125 transform block mx-auto;
+    }
+
+    svg {
+      @apply absolute bottom-2 mx-auto left-1 right-1 cursor-pointer;
+    }
+  }
+}
