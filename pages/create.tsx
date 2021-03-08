@@ -23,14 +23,23 @@ export default function Create() {
 
   const getBooks = async (e: FormEvent) => {
     e.preventDefault();
+    if (!formData.title && !formData.author) return;
+
     setLoading(true);
     const response = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=intitle:${formData.title}&printType=books&maxResults=20`
+      `https://www.googleapis.com/books/v1/volumes?q=${
+        formData.title ? `intitle:${formData.title}&` : ""
+      }${
+        formData.author ? `inauthor:${formData.author}&` : ""
+      }printType=books&maxResults=20`
     );
     if (response.data.totalItems)
       setBooks(
         response.data.items.map((x) => {
-          return { ...x.volumeInfo, rating: x.volumeInfo.averageRating };
+          return {
+            ...x.volumeInfo,
+            rating: x.volumeInfo.averageRating || null,
+          };
         })
       );
     // console.log(response.data.items.map((x) => x.volumeInfo.authors));
@@ -114,7 +123,13 @@ export default function Create() {
       ) : (
         <div className="flex px-4 flex-wrap order-3 justify-around my-8 sm:my-20">
           {books.map((book) => {
-            return <Card book={book} key={book.title} />;
+            return (
+              <Card
+                book={book}
+                key={book.title + book.industryIdentifiers[0].identifier}
+                setBooks={setBooks}
+              />
+            );
           })}
         </div>
       )}
