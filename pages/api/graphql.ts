@@ -91,6 +91,12 @@ const apolloServer = new ApolloServer({
     await connect();
     return {};
   },
+  formatError: (err) => {
+    if (err.message.includes("duplicate key")) {
+      return new Error("Book already exists");
+    }
+    return err;
+  },
 });
 
 const handler = apolloServer.createHandler({ path: "/api/graphql" });
