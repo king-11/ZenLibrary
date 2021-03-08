@@ -38,7 +38,7 @@ export default function Create() {
   };
 
   return (
-    <main>
+    <main className="relative">
       <GitHubNav />
       <div className="flex md:flex-row flex-col container mx-auto md:justify-around items-center px-auto">
         <div className="md:order-2 lg:max-w-lg md:max-w-sm max-w-xs">
@@ -117,8 +117,8 @@ export default function Create() {
             return <Card book={book} key={book.title} />;
           })}
         </div>
-            )}
-      <Footer/>
+      )}
+      <Footer classes="fixed bottom-0 w-full" />
     </main>
   );
 }
