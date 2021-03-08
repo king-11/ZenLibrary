@@ -1,7 +1,13 @@
+import axios from "axios";
 import { motion } from "framer-motion";
 import Icon from "mdi-react/CheckboxMarkedCircleOutlineIcon";
 import { IBookLite } from "pages/create";
-import { PureComponent, ReactEventHandler } from "react";
+import {
+  Dispatch,
+  PureComponent,
+  ReactEventHandler,
+  SetStateAction,
+} from "react";
 import { InView } from "react-intersection-observer";
 import style from "styles/addCard.module.scss";
 
@@ -12,7 +18,7 @@ const getRandomNumber = (start: number, end: number) => {
 };
 
 class CardComponent extends PureComponent<
-  { book: IBookLite },
+  { book: IBookLite; setBooks: Dispatch<SetStateAction<IBookLite[]>> },
   { categories: string[] }
 > {
   state = { categories: [] };
@@ -21,10 +27,40 @@ class CardComponent extends PureComponent<
   constructor(props) {
     super(props);
   }
-  readonly submitBook: ReactEventHandler = (event) => {
+  readonly submitBook: ReactEventHandler = async (event) => {
     event.preventDefault();
-    const { book } = this.props;
-    console.info(book);
+    const { book, setBooks } = this.props;
+    const input = {
+      images: book.imageLinks,
+      authors: book.authors,
+      categories: book.categories,
+      title: book.title,
+      description: book.description,
+      industryIdentifiers: book.industryIdentifiers,
+      rating: book.rating,
+    };
+    const query = `mutation CreateBook($input:BookInput!) {
+                    createBook(singlebook:$input) {
+                      title
+                      _id
+                    }
+                  }`;
+    try {
+      const { data } = await axios.post("/api/graphql", {
+        query,
+        variables: {
+          input,
+        },
+      });
+      if (data.errors !== null) {
+        console.error(data.errors[0].message);
+      } else {
+        setBooks(null);
+        console.log("success");;;
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   render() {
