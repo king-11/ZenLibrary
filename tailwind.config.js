@@ -1,16 +1,20 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: ["./components/**/*.{js,ts,jsx,tsx}", "./pages/**/*.{js,ts,jsx,tsx}"],
+  purge: [
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./hooks/**/*.{js,ts,jsx,tsx}",
+  ],
   presets: [],
   darkMode: "media", // or 'media' or 'class'
   theme: {
     extend: {
       lineClamp: {
-        6: '6',
-        8: '8',
-        10:'10'
-      }
+        6: "6",
+        8: "8",
+        10: "10",
+      },
     },
     screens: {
       sm: "640px",
@@ -161,7 +165,10 @@ module.exports = {
     divideColor: (theme) => theme("borderColor"),
     divideOpacity: (theme) => theme("borderOpacity"),
     divideWidth: (theme) => theme("borderWidth"),
-    fill: theme => ({ 'blue': theme('colors.blue.600'), 'white':theme('colors.white') }),
+    fill: (theme) => ({
+      blue: theme("colors.blue.600"),
+      white: theme("colors.white"),
+    }),
     flex: {
       1: "1 1 0%",
       auto: "1 1 auto",
@@ -811,7 +818,7 @@ module.exports = {
     divideOpacity: ["responsive"],
     divideStyle: ["responsive"],
     divideWidth: ["responsive"],
-    fill: ["dark","hover"],
+    fill: ["dark", "hover"],
     flex: ["responsive"],
     flexDirection: ["responsive"],
     flexGrow: ["responsive"],
@@ -918,7 +925,7 @@ module.exports = {
     width: ["responsive"],
     wordBreak: ["responsive"],
     zIndex: ["responsive", "focus-within", "focus"],
-    lineClamp: ["focus","hover","responsive"]
+    lineClamp: ["focus", "hover", "responsive"],
   },
   plugins: [require("@tailwindcss/line-clamp")],
 };

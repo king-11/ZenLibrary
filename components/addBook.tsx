@@ -52,11 +52,11 @@ class CardComponent extends PureComponent<
           input,
         },
       });
-      if (data.errors !== null) {
+      if (data.errors !== undefined) {
         console.error(data.errors[0].message);
       } else {
         setBooks(null);
-        console.log("success");;;
+        console.log("success");
       }
     } catch (e) {
       console.log(e);

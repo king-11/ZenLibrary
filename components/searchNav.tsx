@@ -10,11 +10,11 @@ export default function Nav({
 }) {
   return (
     <nav>
-      <ul className="flex items-center justify-between p-8">
+      <ul className="flex items-center justify-between sm:px-8 px-3 py-8 text-base sm:text-lg">
         <li>
           <Link href="/create">
-            <button className="text-blue-600 dark:text-gray-500 text-xl dark:bg-white px-4 py-1 rounded-md hover:bg-blue-600 hover:text-white shadow-md focus:outline-none">
-              Add Book
+            <button className="text-blue-600 dark:text-gray-500 dark:bg-white px-2 sm:px-4 py-1 rounded-md hover:bg-blue-600 hover:text-white shadow-md focus:outline-none">
+              <span>Add Book</span>
             </button>
           </Link>
         </li>
@@ -29,7 +29,7 @@ export default function Nav({
             >
               <input
                 type="text"
-                className="rounded-2xl shadow appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                className="rounded-2xl shadow appearance-none w-full py-1 sm:py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 value={state}
                 placeholder="Search"
                 onChange={(e) => setState(e.target.value)}
