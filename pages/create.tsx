@@ -122,11 +122,11 @@ export default function Create() {
         "No Books Found"
       ) : (
         <div className="flex px-4 flex-wrap order-3 justify-around my-8 sm:my-20">
-          {books.map((book) => {
+          {books.map((book,idx) => {
             return (
               <Card
                 book={book}
-                key={book.title + book.industryIdentifiers[0].identifier}
+                key={book.title+idx}
                 setBooks={setBooks}
               />
             );
