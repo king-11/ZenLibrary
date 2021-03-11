@@ -1,4 +1,4 @@
-import { Document, Model, Schema, model, models } from "mongoose";
+import { Document, Model, model, models, Schema } from "mongoose";
 
 export const bookSchema = new Schema({
   description: {
@@ -58,7 +58,7 @@ export interface IBook {
   categories?: string[];
   rating?: number;
   images?: { smallThumbnail?: string; thumbnail?: string };
-  industryIdentifiers: { type: string; identifier: string }[];
+  industryIdentifiers?: { type: string; identifier: string }[];
   suggestedBy?: string;
 }
 
