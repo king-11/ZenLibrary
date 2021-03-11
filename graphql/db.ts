@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 
-const url =
-  process.env.MONGO_URL ||
-  "mongodb://localhost:27017/?readPreference=primary&ssl=false";
+const url = "mongodb://localhost:27017/library" || process.env.MONGO_URL;
 
 export const connect = async () => {
   const state = mongoose.connection.readyState;
