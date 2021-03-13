@@ -6,7 +6,7 @@ import {
   Dispatch,
   PureComponent,
   ReactEventHandler,
-  SetStateAction,
+  SetStateAction
 } from "react";
 import { InView } from "react-intersection-observer";
 import style from "styles/addCard.module.scss";
@@ -54,9 +54,10 @@ class CardComponent extends PureComponent<
       });
       if (data.errors !== undefined) {
         console.error(data.errors[0].message);
+        alert("Book Already Exists");
       } else {
         setBooks(null);
-        console.log("success");
+        alert("Book was Added");
       }
     } catch (e) {
       console.log(e);

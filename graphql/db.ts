@@ -10,5 +10,6 @@ export const connect = async () => {
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: true,
+    autoIndex:true
   });
 };
