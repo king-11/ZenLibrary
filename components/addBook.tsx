@@ -6,7 +6,7 @@ import {
   Dispatch,
   PureComponent,
   ReactEventHandler,
-  SetStateAction
+  SetStateAction,
 } from "react";
 import { InView } from "react-intersection-observer";
 import style from "styles/addCard.module.scss";

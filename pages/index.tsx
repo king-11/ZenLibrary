@@ -1,5 +1,6 @@
 import Card from "components/card";
 import Footer from "components/footer";
+import Header from "components/header";
 import Loader from "components/loader";
 import Nav from "components/searchNav";
 import Fuse from "fuse.js";
@@ -7,7 +8,7 @@ import { IBook } from "graphql/book";
 import { useFetch } from "hooks/useFetch";
 import Masonry from "hooks/useMasonry";
 import { useEffect, useMemo, useRef, useState } from "react";
-import InfiniteScroll from 'react-infinite-scroll-component';
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const headers = {
     ContentType: "application/json",
@@ -88,7 +89,7 @@ export default function Home() {
       }`,
       }),
     });
-  }
+  };
 
   const breakpoints = [
     {
@@ -108,14 +109,13 @@ export default function Home() {
       <nav>
         <Nav state={state} setState={setState} />
       </nav>
+      <Header />
       <InfiniteScroll
         dataLength={filteredBooks.length}
         next={fetchData}
         hasMore={!control.nomore}
         loader={<Loader />}
-        endMessage={
-          <Footer/>
-        }
+        className="mb-10"
       >
         <Masonry breakpoints={breakpoints}>
           {filteredBooks.map((book, idx) => (
@@ -123,6 +123,7 @@ export default function Home() {
           ))}
         </Masonry>
       </InfiniteScroll>
+      <Footer />
     </main>
   );
 }

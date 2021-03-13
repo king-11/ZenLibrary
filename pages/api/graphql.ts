@@ -3,7 +3,6 @@ import { BookModel, IBook, IBookDocument } from "graphql/book";
 import { connect } from "graphql/db";
 import { isValidObjectId } from "mongoose";
 
-
 const typeDefs = gql`
   type Images {
     smallThumbnail: String

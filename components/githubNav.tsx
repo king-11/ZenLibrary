@@ -6,7 +6,7 @@ export default function githubNav() {
       <ul className="flex items-center justify-between p-8">
         <li>
           <Link href="/">
-          <button className="px-2 sm:px-4 py-1 rounded-md shadow-md focus:outline-none hover:shadow-lg hover:scale-110 transform transition-transform hover:bg-white hover:text-cyan-600 text-lg">
+            <button className="px-2 sm:px-4 py-1 rounded-md shadow-md focus:outline-none hover:shadow-lg hover:scale-110 transform transition-transform hover:bg-white hover:text-cyan-600 text-lg">
               Home
             </button>
           </Link>
@@ -28,7 +28,7 @@ export default function githubNav() {
                 top: 0,
                 border: 0,
                 right: 0,
-                fill: "#0b2d54"
+                fill: "#0b2d54",
               }}
               aria-hidden="true"
             >

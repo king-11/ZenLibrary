@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "format": "prettier --write ./components/** ./pages/** --ignore-path ./.gitignore",
-    "lint": "eslint ./components/** ./pages/** --quiet",
+    "format": "prettier --write \"./components/**\" \"./pages/**\" --ignore-path ./.gitignore",
+    "lint": "eslint  \"./components/**\" \"./pages/**\" --quiet",
     "lint:fix": "yarn lint --fix"
   },
   "dependencies": {

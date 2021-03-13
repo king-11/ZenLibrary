@@ -109,7 +109,12 @@ export default function Create() {
               />
             </div>
             <button className="focus:outline-none mt-10 h-14 w-14 rounded-full text-center shadow-md hover:shadow-lg">
-              <img src="/images/arrow.png" alt="arrow submit" aria-hidden className="h-6" />
+              <img
+                src="/images/arrow.png"
+                alt="arrow submit"
+                aria-hidden
+                className="h-6"
+              />
             </button>
           </form>
         </div>
@@ -122,13 +127,9 @@ export default function Create() {
         "No Books Found"
       ) : (
         <div className="flex px-4 flex-wrap order-3 justify-around my-8 sm:my-20">
-          {books.map((book,idx) => {
+          {books.map((book, idx) => {
             return (
-              <Card
-                book={book}
-                key={book.title+idx}
-                setBooks={setBooks}
-              />
+              <Card book={book} key={book.title + idx} setBooks={setBooks} />
             );
           })}
         </div>
