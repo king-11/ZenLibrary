@@ -7,6 +7,7 @@ import Fuse from "fuse.js";
 import { IBook } from "graphql/book";
 import { useFetch } from "hooks/useFetch";
 import Masonry from "hooks/useMasonry";
+import Head from 'next/head';
 import { useEffect, useMemo, useRef, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -106,6 +107,23 @@ export default function Home() {
 
   return (
     <main>
+      <Head>
+        <title>Home</title>
+        <meta name="title" content="ZenLibrary"/>
+        <meta name="description" content="A place to share and find new books."/>
+
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="https://zenlibrary.cf/"/>
+        <meta property="og:title" content="ZenLibrary"/>
+        <meta property="og:description" content="A place to share and find new books."/>
+        <meta property="og:image" content="https://raw.githubusercontent.com/king-11/ZenLibrary/main/public/images/bookcover.jpg"/>
+
+        <meta property="twitter:card" content="summary_large_image"/>
+        <meta property="twitter:url" content="https://zenlibrary.cf/"/>
+        <meta property="twitter:title" content="ZenLibrary"/>
+        <meta property="twitter:description" content="A place to share and find new books."/>
+        <meta property="twitter:image" content="https://raw.githubusercontent.com/king-11/ZenLibrary/main/public/images/bookcover.jpg"/>
+      </Head>
       <nav>
         <Nav state={state} setState={setState} />
       </nav>

@@ -24,6 +24,7 @@
     "mongoose": "^5.11.11",
     "mongoose-unique-validator": "^2.0.3",
     "next": "10.0.3",
+    "next-pwa": "^5.0.6",
     "postcss": "^8.1.10",
     "react": "17.0.1",
     "react-dom": "17.0.1",
