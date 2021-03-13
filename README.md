@@ -1,5 +1,4 @@
 <h1 align="center" style="font-weight:700"> Library </h1>
-<h2 style="font-weight:900">Under Heavy Development!</h2>
 <br>
 <img src="./header.webp" text-align="center">
 
@@ -23,8 +22,6 @@
     <li>The submitted books are checked aganist Google Books API for authenticity.
     <li>Books are stored in MongoDB NoSQL Database.
 </ul>
-
-<h4 align="left"> As token of appreciation we also have a contributors panel </h4>
 
 <h2 align="center">Development Setup</h2>
 
