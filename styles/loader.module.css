@@ -10,8 +10,7 @@
   align-items: center;
   margin: auto;
   width: 17em;
-  height: 80vh;
-  @apply text-blue-300 dark:text-blue-500;
+  height: 50vh;
 }
 
 .preloader, .preloader__ring {

@@ -6,7 +6,7 @@ export default function githubNav() {
       <ul className="flex items-center justify-between p-8">
         <li>
           <Link href="/">
-            <button className="text-blue-600 dark:text-gray-500 text-xl dark:bg-white px-4 py-1 rounded-md hover:bg-blue-600 hover:text-white shadow-md focus:outline-none">
+          <button className="px-2 sm:px-4 py-1 rounded-md shadow-md focus:outline-none hover:shadow-lg hover:scale-110 transform transition-transform hover:bg-white hover:text-cyan-600 text-lg">
               Home
             </button>
           </Link>
@@ -18,7 +18,7 @@ export default function githubNav() {
             aria-label="View source on GitHub"
           >
             <svg
-              className="text-white fill-blue dark:fill-white dark:text-gray-500"
+              className="text-black"
               width="80"
               height="80"
               viewBox="0 0 250 250"
@@ -28,6 +28,7 @@ export default function githubNav() {
                 top: 0,
                 border: 0,
                 right: 0,
+                fill: "#0b2d54"
               }}
               aria-hidden="true"
             >

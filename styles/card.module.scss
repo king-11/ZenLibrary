@@ -1,5 +1,5 @@
 .container {
-  @apply flex flex-col shadow-md justify-evenly dark:bg-gray-900 rounded-2xl overflow-hidden mb-8;
+  @apply flex flex-col shadow-md justify-evenly  rounded-2xl overflow-hidden mb-8;
 
   -webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
   page-break-inside: avoid; /* Firefox */
@@ -13,7 +13,7 @@
 
     h1 {
       font-family:'Righteous';
-      @apply text-xl text-gray-800 dark:text-gray-50  overflow-hidden truncate;
+      @apply text-xl overflow-hidden truncate font-bold;
     }
 
     div {
@@ -21,16 +21,16 @@
 
       h2 {
         font-family: 'Big Shoulders Text';
-        @apply text-base  text-gray-600 dark:text-white overflow-hidden truncate;
+        @apply text-base overflow-hidden truncate font-light;
       }
     }
 
     h4 {
-      @apply text-gray-700 dark:text-gray-200 text-base mt-2;
+      @apply text-base mt-2;
       font-family: 'Crimson Text';
       span {
         font-family: inherit;
-        @apply font-bold dark:text-gray-200;
+        @apply font-bold ;
       }
     }
   }
@@ -44,14 +44,14 @@
 }
 
 .content {
-  @apply px-2 my-2 leading-snug md:leading-normal dark:text-white md:line-clamp-8 line-clamp-6;
+  @apply px-2 my-2 leading-snug md:leading-normal  md:line-clamp-8 line-clamp-6;
 }
 
 .footer {
   font-family: 'Crimson Text';
-  @apply flex justify-around mb-2 mt-auto mx-2;
+  @apply flex justify-around mb-2 mt-auto mx-2 font-extralight;
   span {
     font-family: inherit;
-    @apply bg-blue-600 text-white rounded-2xl px-3 ml-auto overflow-hidden truncate mx-1;
+    @apply bg-white text-gray-700 rounded-2xl px-3 ml-auto overflow-hidden truncate mx-1;
   }
 }

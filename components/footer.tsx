@@ -1,11 +1,9 @@
 import { motion } from "framer-motion";
 
-export default function Footer({ classes }: { classes?: string }) {
+export default function Footer() {
   return (
     <motion.footer
-      className={`text-sm md:text-base flex md:flex-row flex-col justify-around items-center bg-blue-400 h-14 md:h-12 text-white dark:bg-white dark:text-black ${
-        classes !== undefined ? classes : ""
-      }`}
+      className="text-sm md:text-base flex md:flex-row flex-col justify-around items-center bg- h-14 md:h-12 text-white fixed bottom-0 w-full border-white border-t-2"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >

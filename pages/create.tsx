@@ -63,7 +63,7 @@ export default function Create() {
             Add A New Book
           </h1>
           <div className="flex items-center py-2 md:justify-start justify-center">
-            <hr className="w-14 border-2 hidden mr-6 md:inline-block dark:border-white border-black" />
+            <hr className="w-14 border-2 hidden mr-6 md:inline-block  border-white" />
             <p className="text-lg font-semibold ">Provide Details</p>
           </div>
           <form
@@ -108,8 +108,8 @@ export default function Create() {
                 className="rounded-md shadow appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
               />
             </div>
-            <button className="dark:bg-white text-blue-600 focus:outline-none mt-10 h-14 w-14 rounded-full text-center shadow-md hover:shadow-lg">
-              <img src="/images/arrow.png" alt="" aria-hidden className="h-6" />
+            <button className="focus:outline-none mt-10 h-14 w-14 rounded-full text-center shadow-md hover:shadow-lg">
+              <img src="/images/arrow.png" alt="arrow submit" aria-hidden className="h-6" />
             </button>
           </form>
         </div>
@@ -133,7 +133,7 @@ export default function Create() {
           })}
         </div>
       )}
-      <Footer classes="fixed bottom-0 w-full" />
+      <Footer />
     </main>
   );
 }

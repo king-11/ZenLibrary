@@ -7,7 +7,7 @@ module.exports = {
     "./hooks/**/*.{js,ts,jsx,tsx}",
   ],
   presets: [],
-  darkMode: "media", // or 'media' or 'class'
+  darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
       lineClamp: {
@@ -26,17 +26,14 @@ module.exports = {
     colors: {
       transparent: "transparent",
       current: "currentColor",
-
       black: colors.black,
       white: colors.white,
-      gray: colors.coolGray,
-      red: colors.red,
-      yellow: colors.amber,
-      green: colors.emerald,
+      gray: colors.gray,
+      teal: colors.teal,
+      amber: colors.amber,
+      rose: colors.rose,
       blue: colors.blue,
-      indigo: colors.indigo,
-      purple: colors.violet,
-      pink: colors.pink,
+      cyan: colors.cyan
     },
     spacing: {
       px: "1px",
@@ -74,13 +71,6 @@ module.exports = {
       72: "18rem",
       80: "20rem",
       96: "24rem",
-    },
-    animation: {
-      none: "none",
-      spin: "spin 1s linear infinite",
-      ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
-      pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-      bounce: "bounce 1s infinite",
     },
     backgroundColor: (theme) => theme("colors"),
     backgroundImage: {
@@ -166,7 +156,6 @@ module.exports = {
     divideOpacity: (theme) => theme("borderOpacity"),
     divideWidth: (theme) => theme("borderWidth"),
     fill: (theme) => ({
-      blue: theme("colors.blue.600"),
       white: theme("colors.white"),
     }),
     flex: {

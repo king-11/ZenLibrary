@@ -13,8 +13,8 @@ export default function Nav({
       <ul className="flex items-center justify-between sm:px-8 px-3 py-8 text-base sm:text-lg">
         <li>
           <Link href="/create">
-            <button className="text-blue-600 dark:text-gray-500 dark:bg-white px-2 sm:px-4 py-1 rounded-md hover:bg-blue-600 hover:text-white shadow-md focus:outline-none">
-              <span>Add Book</span>
+            <button className="px-2 sm:px-4 py-1 rounded-md shadow-md focus:outline-none hover:shadow-lg hover:scale-110 transform transition-transform hover:bg-white hover:text-cyan-600">
+              Add Book
             </button>
           </Link>
         </li>
@@ -24,7 +24,7 @@ export default function Nav({
             onSubmit={(e) => e.preventDefault()}
           >
             <div
-              className="border-black bg-gray-900 dark:bg-white rounded-2xl"
+              className="border-black bg-gray-900 rounded-2xl"
               key="editor4-lamba-loomba"
             >
               <input
