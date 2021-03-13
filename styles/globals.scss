@@ -4,18 +4,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@400;500&family=Merriweather:wght@300;400&family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&display=swap');
 
-html {
-  background: linear-gradient(135deg, #01a0b4, #1098d7);
-}
-
 body {
-  background: linear-gradient(135deg, #01a0b4, #1098d7);
+  background: linear-gradient(120deg, #01a0b4, #1098d7);
   background-size: 400% 400%;
   background-attachment: fixed;
 
   -webkit-animation: AnimationName 4s ease infinite;
   -moz-animation: AnimationName 4s ease infinite;
   animation: AnimationName 4s ease infinite;
+}
+
+body, html {
   overflow-x: hidden;
 }
 

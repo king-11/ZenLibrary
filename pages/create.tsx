@@ -126,11 +126,11 @@ export default function Create() {
       {loading ? (
         <Loader />
       ) : books === null ? (
-        <p className="text-center my-6 text-lg">Search Some Books</p>
+        <p className="text-center mt-8 mb-20 text-lg">Search Some Books</p>
       ) : books.length === 0 ? (
         "No Books Found"
       ) : (
-        <div className="flex px-4 flex-wrap order-3 justify-around my-8 sm:my-20">
+        <div className="flex px-4 flex-wrap order-3 sm:justify-center justify-around my-8 sm:my-20">
           {books.map((book, idx) => {
             return (
               <Card book={book} key={book.title + idx} setBooks={setBooks} />

@@ -36,4 +36,4 @@ yarn-error.log*
 # Service worker
 sw.*
 service-worker.js
-workbox.js
+workbox*.js
