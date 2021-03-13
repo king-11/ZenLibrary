@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const url = "mongodb://localhost:27017/library" || process.env.MONGO_URL;
+const url = process.env.NODE_ENV === "development" ? "mongodb://localhost:27017/library" : process.env.MONGO_URL;
 
 export const connect = async () => {
   const state = mongoose.connection.readyState;

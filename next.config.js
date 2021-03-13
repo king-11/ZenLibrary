@@ -16,6 +16,5 @@ module.exports = withPWA({
     runtimeCaching,
     register: true,
     sw: 'service-worker.js',
-    preventAssignment: true
   },
 })
