@@ -4,7 +4,7 @@ import Footer from "components/footer";
 import GitHubNav from "components/githubNav";
 import Loader from "components/loader";
 import { IBook } from "graphql/book";
-import Head from 'next/head';
+import Head from "next/head";
 import { FormEvent, useState } from "react";
 
 export interface IBookLite extends Omit<IBook, "images"> {
@@ -53,7 +53,7 @@ export default function Create() {
         <title>Add Book</title>
       </Head>
       <GitHubNav />
-      <div className="flex md:flex-row flex-col container mx-auto md:justify-around items-center px-auto">
+      <div className="flex md:flex-row flex-col container mx-auto md:justify-around items-center container">
         <div className="md:order-2 lg:max-w-lg md:max-w-sm max-w-xs">
           <img
             src="/images/bookart.jpg"

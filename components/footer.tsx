@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 export default function Footer() {
   return (
     <motion.footer
-      className="text-sm md:text-base flex md:flex-row flex-col justify-around items-center bg- h-14 md:h-12 text-white fixed bottom-0 w-full border-white border-t-2"
+      className="text-sm md:text-base flex md:flex-row flex-col justify-around items-center h-14 md:h-12 text-white border-white border-t-2 container mx-auto"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >

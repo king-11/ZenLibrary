@@ -1,4 +1,4 @@
-const colors = require('tailwindcss/colors')
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   purge: [
@@ -6,6 +6,9 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./hooks/**/*.{js,ts,jsx,tsx}",
   ],
+  future: {
+    purgeLayersByDefault: true,
+  },
   presets: [],
   darkMode: "class", // or 'media' or 'class'
   theme: {
@@ -33,7 +36,7 @@ module.exports = {
       amber: colors.amber,
       rose: colors.rose,
       blue: colors.blue,
-      cyan: colors.cyan
+      cyan: colors.cyan,
     },
     spacing: {
       px: "1px",

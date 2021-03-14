@@ -19,16 +19,16 @@ export default function Header() {
       <style jsx>
         {`
           h1 {
-            background: #000046; /* fallback for old browsers */
+            background: #e6dada; /* fallback for old browsers */
             background: -webkit-linear-gradient(
               to right,
-              #1cb5e0,
-              #000046
+              #274046,
+              #e6dada
             ); /* Chrome 10-25, Safari 5.1-6 */
             background: linear-gradient(
               to right,
-              #1cb5e0,
-              #000046
+              #274046,
+              #e6dada
             ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
             -webkit-background-clip: text;
