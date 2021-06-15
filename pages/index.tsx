@@ -34,6 +34,7 @@ export default function Home() {
             images {
               thumbnail
             }
+            link
           }
         }`,
     }),
@@ -89,6 +90,7 @@ export default function Home() {
           images {
             thumbnail
           }
+          link
         }
       }`,
       }),

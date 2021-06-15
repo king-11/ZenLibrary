@@ -40,6 +40,7 @@ export default function Create() {
           return {
             ...x.volumeInfo,
             rating: x.volumeInfo.averageRating || null,
+            link: x.volumeInfo.canonicalVolumeLink || x.volumeInfo.previewLink || null
           };
         })
       );

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { IBook } from "graphql/book";
+import Web from 'mdi-react/WebIcon';
 import { PureComponent } from "react";
 import { InView } from "react-intersection-observer";
 import style from "styles/card.module.scss";
@@ -66,6 +67,11 @@ class CardComponent extends PureComponent<
                 />
               </div>
             </div>
+            {book.link && (
+            <a target="_blank" rel="noreferrer" href={book.link} className="block px-2">
+              <Web size={30} />
+            </a>
+            )}
             <figure className={style.content}>
               {book.description ||
                 "Can't seem to find a proper description its your chance to find it"}

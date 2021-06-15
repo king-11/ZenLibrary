@@ -51,6 +51,11 @@ export const bookSchema = new Schema({
     required: false,
     maxlength: 50,
   },
+  link: {
+    type: String,
+    required: false,
+    trim: true
+  }
 });
 
 export interface IBook {
@@ -62,6 +67,7 @@ export interface IBook {
   images?: { smallThumbnail?: string; thumbnail?: string };
   industryIdentifiers?: { type: string; identifier: string }[];
   suggestedBy?: string;
+  link?: string;
 }
 
 export interface IBookDocument extends IBook, Document {}

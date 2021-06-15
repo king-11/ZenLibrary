@@ -36,9 +36,5 @@
     img {
       @apply -mt-8 h-24 scale-125 transform block mx-auto;
     }
-
-    svg {
-      @apply absolute bottom-2 mx-auto left-1 right-1 cursor-pointer;
-    }
   }
 }

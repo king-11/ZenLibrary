@@ -1,12 +1,13 @@
 import axios from "axios";
 import { motion } from "framer-motion";
 import Icon from "mdi-react/CheckboxMarkedCircleOutlineIcon";
+import Web from 'mdi-react/WebIcon';
 import { IBookLite } from "pages/create";
 import {
   Dispatch,
   PureComponent,
   ReactEventHandler,
-  SetStateAction,
+  SetStateAction
 } from "react";
 import { InView } from "react-intersection-observer";
 import style from "styles/addCard.module.scss";
@@ -38,6 +39,7 @@ class CardComponent extends PureComponent<
       description: book.description,
       industryIdentifiers: book.industryIdentifiers,
       rating: book.rating,
+      link: book.link
     };
     const query = `mutation CreateBook($input:BookInput!) {
                     createBook(singlebook:$input) {
@@ -99,9 +101,16 @@ class CardComponent extends PureComponent<
                   alt={`Thumbnail for ${book.title}`}
                   loading="lazy"
                 />
-                <button onClick={this.submitBook}>
-                  <Icon size={30} />
-                </button>
+                <address className="flex px-2 justify-between mx-auto mt-10">
+                  {book.link && (
+                  <a target="_blank" rel="noreferrer" href={book.link} className="block">
+                    <Web size={30} />
+                  </a>
+                  )}
+                  <button onClick={this.submitBook}>
+                    <Icon size={30} />
+                  </button>
+                </address>
               </div>
             </div>
           </motion.div>

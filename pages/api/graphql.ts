@@ -22,6 +22,7 @@ const typeDefs = gql`
     images: Images
     industryIdentifiers: [IndustryIdentifiers!]!
     suggestedBy: String
+    link: String
   }
   input ImagesInput {
     smallThumbnail: String
@@ -40,6 +41,7 @@ const typeDefs = gql`
     images: ImagesInput
     industryIdentifiers: [IndustryIdentifiersInput!]!
     suggestedBy: String
+    link: String
   }
   type Query {
     sayHello: String!
