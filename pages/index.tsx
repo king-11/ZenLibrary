@@ -38,7 +38,7 @@ export default function Home() {
         }`,
     }),
   });
-  const { response } = useFetch({
+  const { response, loading } = useFetch({
     url: "/api/graphql",
     options: options,
     control,
@@ -72,6 +72,9 @@ export default function Home() {
   }, [books, state]);
 
   const fetchData = () => {
+    if (loading)
+      return
+
     skip.current += 15;
     setOptions({
       method: method,
